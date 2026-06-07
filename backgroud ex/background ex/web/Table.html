@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Table</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 400px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        .header-title {
+            font-size: 24px;
+            font-weight: bold;
+            padding: 10px;
+        }
+        .category-cell {
+            font-weight: bold;
+            width: 80px;
+        }
+        .label-cell {
+            text-align: left;
+            padding-left: 15px;
+        }
+        .bg-light {
+            background-color: #f9f9f9;
+        }
+              /* Style cho nút bấm */
+        .btn-download {
+            margin-bottom: 15px;
+            padding: 10px 20px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .btn-download:hover { background-color: #27ae60; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+</head>
+<body>
+
+    <div id="container">
+    
+   
+    </div>
+    
+   
+   
+<!--
+<script>
+  if (window.self === window.top) {
+    console.log("Đây là trang web chính (Main Frame)",window.location.href);
+} else {
+    console.log("Đây là bên trong một iframe");
+    console.log("URL của iframe này là: ", window.location.href);
+}
+    //
+    //
+    //
+    //
+    //
+    //
+     
+let data = {
+    "RK_RESULT": [
+        {
+            "PLANT_CD": "V113",
+            "MTRL_CD": "REB010045",
+            "WOOD_AGE_DAY": 1358,
+            "INPUT_TON": 2,
+            "MTRL_CHTR_VAL": "ACA,Chip",
+            "INPUT_RATIO": 7.834763365298754,
+            "WOOD_MC": ""
+        },
+        {
+            "PLANT_CD": "V113",
+            "MTRL_CD": "REB010071",
+            "WOOD_AGE_DAY": 13,
+            "INPUT_TON": 4.9,
+            "MTRL_CHTR_VAL": "CSW,C.Log",
+            "INPUT_RATIO": 18.90359902162519,
+            "WOOD_MC": ""
+        },
+        {
+            "PLANT_CD": "V113",
+            "MTRL_CD": "REB010037",
+            "WOOD_AGE_DAY": 50,
+            "INPUT_TON": 1.2,
+            "MTRL_CHTR_VAL": "MHW,Chip",
+            "INPUT_RATIO": 4.573513996195209,
+            "WOOD_MC": ""
+        },
+        {
+            "PLANT_CD": "V113",
+            "MTRL_CD": "REB010021",
+            "WOOD_AGE_DAY": 34,
+            "INPUT_TON": 0,
+            "MTRL_CHTR_VAL": "PNE,C.Log",
+            "INPUT_RATIO": 0,
+            "WOOD_MC": ""
+        },
+        {
+            "PLANT_CD": "V113",
+            "MTRL_CD": "REB010020",
+            "WOOD_AGE_DAY": 37,
+            "INPUT_TON": 0,
+            "MTRL_CHTR_VAL": "PNE,Slab",
+            "INPUT_RATIO": 0,
+            "WOOD_MC": ""
+        },
+        {
+            "PLANT_CD": "V113",
+            "MTRL_CD": "REB010015",
+            "WOOD_AGE_DAY": 8,
+            "INPUT_TON": 5.4,
+            "MTRL_CHTR_VAL": "RUB,C.Log",
+            "INPUT_RATIO": 20.91082035951392,
+            "WOOD_MC": ""
+        },
+        {
+            "PLANT_CD": "V113",
+            "MTRL_CD": "REB010074",
+            "WOOD_AGE_DAY": 35,
+            "INPUT_TON": 2,
+            "MTRL_CHTR_VAL": "RUB,Chip,VENR",
+            "INPUT_RATIO": 7.834763365298754,
+            "WOOD_MC": ""
+        },
+        {
+            "PLANT_CD": "V113",
+            "MTRL_CD": "REB010010",
+            "WOOD_AGE_DAY": 24,
+            "INPUT_TON": 5.9,
+            "MTRL_CHTR_VAL": "RUB,Root",
+            "INPUT_RATIO": 22.952983654928758,
+            "WOOD_MC": ""
+        },
+        {
+            "PLANT_CD": "V113",
+            "MTRL_CD": "REB010008",
+            "WOOD_AGE_DAY": 98,
+            "INPUT_TON": 1.2,
+            "MTRL_CHTR_VAL": "RUB,S.Log",
+            "INPUT_RATIO": 4.577396435920332,
+            "WOOD_MC": ""
+        },
+        {
+            "PLANT_CD": "V113",
+            "MTRL_CD": "REB010005",
+            "WOOD_AGE_DAY": 59,
+            "INPUT_TON": 3.2,
+            "MTRL_CHTR_VAL": "RUB,Slab",
+            "INPUT_RATIO": 12.412159801219087,
+            "WOOD_MC": ""
+        }
+    ],
+    "is_success": true
+}
+ // 1. Định nghĩa mapping giữa code và ID hiển thị (hoặc tên hiển thị)
+async function getdata(){
+ let a = await fetch("https://sf.dongwha.com/V113/S30/selectMaterialInputList2/jqxGridJSON.json?ServiceName=dwsf.v113.screen.s30rawmaterial-service&selectMaterialInputList2=1", {
+  "headers": {
+    "accept": "application/json, text/javascript, */*; q=0.01",
+    "accept-language": "vi,en;q=0.9,en-GB;q=0.8,en-US;q=0.7",
+    "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+    "priority": "u=1, i",
+    "sec-ch-ua": "\"Microsoft Edge\";v=\"147\", \"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"147\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "x-requested-with": "XMLHttpRequest"
+  },
+  "referrer": "https://sf.dongwha.com/V113/S30/V113S30H1001.do",
+  "body": "PLANT_CD=V113&YMD_FORMAT_STR=DD-MM-YYYY&gwLoginId=2301049&gwServiceName=dwsf.v113.screen.s30rawmaterial-service&gwLanguageCd=EN&gwClientIp=LOCAL+PC&gwPgmId=V113S30H1001&gwPlantCd=V113&gwMenuNo=639&GRP_CD_ID=ORD_TREE_CD&REAL_TM=true&SEARCH_TYPE=3",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+});
+let b = await a.json()
+jsonData= b
+//console.log(b)
+return b
+}
+
+
+window.jsonData = {
+            "RK_RESULT": [
+                { "MTRL_CHTR_VAL": "ACA,SlabChip", "INPUT_RATIO": 1.5077524111830058 },
+                { "MTRL_CHTR_VAL": "CSW,C.Log", "INPUT_RATIO": 15.162983762666341 },
+                { "MTRL_CHTR_VAL": "MHW,Chiplog", "INPUT_RATIO": 7.550970577463069 },
+                { "MTRL_CHTR_VAL": "RUB,C.Log", "INPUT_RATIO": 29.58735197167623 },
+                { "MTRL_CHTR_VAL": "RUB,Chip,VENR", "INPUT_RATIO": 3.1314857770723967 },
+                { "MTRL_CHTR_VAL": "RUB,Root", "INPUT_RATIO": 30.25882065681846 },
+                { "MTRL_CHTR_VAL": "RUB,S.Log", "INPUT_RATIO": 5.646441215968746 },
+                { "MTRL_CHTR_VAL": "RUB,Slab", "INPUT_RATIO": 7.154193627151752 }
+            ]
+        };
+
+
+ 
+window.summary = {}
+
+window.mapping = [
+        { key: "RUB,C.Log", label: "Rubber log", group: "RUB" },
+        { key: "RUB,S.Log", label: "S.Log", group: "RUB" },
+        { key: "RUB,Root", label: "Root", group: "RUB" },
+        { key: "VENR", label: "Verneer", otherKey: "RUB,Chip,VENR", group: "RUB" },
+        { key: "RUB,Slab", label: "Slab", group: "RUB" },
+        { key: "MEL", label: "Mel", group: "NON" },
+        { key: "CSW", label: "Cashew", group: "NON" },
+        { key: "MHW", label: "MTH/MHW",otherKey: "MHW,Chip",
+        group: "NON" },
+        { key: "ACA", label: "ACA", group: "NON" }
+     //   { key: "PINE", label: "PINE", group: "other" }
+    ];
+async function updateMapping() {
+    // Giả sử dữ liệu được gán vào window.jsonData từ hàm getdata()
+ //   window.jsonData = data //await getdata(); 
+    console.log("jsonData", window.jsonData);
+    
+    const results = window.jsonData.RK_RESULT;
+
+    results.forEach(item => {
+        const val = item.MTRL_CHTR_VAL;
+        if (!val) return; // Bỏ qua nếu dữ liệu rỗng
+
+        // Kiểm tra xem ký tự 'val' này đã tồn tại trong mapping chưa (check cả key và otherKey)
+        const isExisted = window.mapping.some(m => {
+            // Kiểm tra trùng key chính
+            if (m.key === val) return true;
+            
+            // Kiểm tra trùng trong otherKey (tách chuỗi bằng dấu phẩy thành mảng để check)
+            if (m.otherKey) {
+                const altKeys = m.otherKey.split(';').map(k => k.trim());
+                return altKeys.includes(val);
+            }
+            
+            return false;
+        });
+
+        // Nếu CHƯA tồn tại ở bất kỳ đâu, lúc này mới thêm mới vào cấu trúc với group "NON"
+        if (!isExisted) {
+            window.mapping.push({
+                key: val,
+                label: val,
+                group: "NON"
+            });
+            console.log(`Đã thêm key mới chưa có trong hệ thống: ${val}`);
+        }
+    });
+    console.log("maping added",mapping)
+}
+
+// Chạy hàm
+
+
+    
+    window.summary = {}
+function summaryUpdate(){
+    summary = jsonData.RK_RESULT.reduce((acc, item) => {
+    // Tìm group tương ứng trong mapping
+    // Logic: Kiểm tra xem key trong mapping có xuất hiện trong MTRL_CHTR_VAL không
+    const mapEntry = mapping.find(m => item.MTRL_CHTR_VAL.includes(m.key));
+    
+    const groupName = mapEntry ? mapEntry.group : "NON";
+
+    if (!acc[groupName] ) {
+        acc[groupName] = { count: 0, totalRatio: 0 };
+    }
+
+    acc[groupName].count += 1;
+    acc[groupName].totalRatio += item.INPUT_RATIO;
+
+    return acc;
+}, {});
+}
+
+console.log("Kết quả thống kê:", summary);
+
+// Nếu bạn chỉ muốn lấy giá trị cụ thể:
+//console.log(`Số lượng nhóm RUB: ${summary.RUB?.count || 0}`);
+//console.log(`Số lượng nhóm NON: ${summary.NON?.count || 0}`);
+
+function renderTableold(data) {
+    let sumRubber = 0;
+    let sumNonRubber = 0;
+    const tbody = document.getElementById('myTbody');
+   
+    //  <tr id="RUB">
+    //         <td rowspan="6" class="group-label">Rubber</td>
+    //         <td style="padding: 0;"></td>
+    //         <td style="padding: 0;"></td>
+    //         <td rowspan="6" id="total-rubber" class="total-cell">0.0%</td>
+    //     </tr>
+    const groupCounts = mapping.reduce((acc, item) => {
+    const groupName = item.group;
+    acc[groupName] = (acc[groupName] || 0) + 1;
+    return acc;
+    }, {});    
+//console.log(groupCounts)
+    if(!groupCounts.RUB){}else {
+    
+            const row = tbody.insertRow(); // Thêm vào cuối tbody
+            row.id = `row-RUB`;
+            const cell0 = row.insertCell();
+            cell0.className = "rowRub";
+            cell0.rowSpan = `${groupCounts.RUB+1}`;
+            cell0.textContent = "Rubber";
+            const cell1 = row.insertCell();
+            cell1.style.padding = 0;
+            const cell2 = row.insertCell();
+            cell2.style.padding = 0;
+            const cell3 = row.insertCell();
+            cell3.rowSpan = `${groupCounts.RUB+1}`;
+            cell3.id = "total-rubber"
+            cell3.className = "rowRub";
+            cell3.textContent = "0";
+        }
+    let i = groupCounts.RUB
+    mapping.forEach((mapItem,i) =>{
+       
+       if(groupCounts.RUB - i == 0 ){
+             if(!groupCounts.NON){}else {
+            const row = tbody.insertRow(); // Thêm vào cuối tbody
+            row.id = `row-NON`;
+            const cell0 = row.insertCell();
+            cell0.className = "rowNon";
+            cell0.rowSpan = `${groupCounts.NON+1}`;
+            cell0.textContent = "None Rubber";
+            const cell1 = row.insertCell();
+            cell1.style.padding = 0;
+            const cell2 = row.insertCell();
+            cell2.style.padding = 0;
+            const cell3 = row.insertCell();
+            cell3.rowSpan = `${groupCounts.NON+1}`;
+            cell3.id = "total-non-rubber"
+            cell3.className = "rowNon";
+            cell3.textContent = "0";
+             }
+       }
+        const row = tbody.insertRow(); // Thêm vào cuối tbody
+        row.id = `row-${mapItem.key.replace(/,/g, '-')}`;
+        //
+        const cell1 = row.insertCell();
+        cell1.id = `label-${mapItem.label.replace(/,/g, '-')}`;
+        cell1.textContent = `${mapItem.label.replace(/,/g, '-')}`;
+        //
+        const cell2 = row.insertCell();
+        cell2.id = `val-${mapItem.key.replace(/,/g, '-')}`;
+        cell2.textContent = '0';
+    });
+    
+
+    mapping.forEach((mapItem) => {
+        // Tìm item tương ứng trong JSON
+        const match = data.RK_RESULT.find(d => d.MTRL_CHTR_VAL.includes(mapItem.key));
+        const ratio = match ? match.INPUT_RATIO : 0;
+        
+
+        // <tr id="row-RUB-CLog">
+           
+        //     <td>Rubber log</td>
+        //     <td id="val-RUB-CLog">0.0%</td>
+            
+        // </tr>
+        
+
+        // ID thẻ HTML giả định: ví dụ 'row-RUB-Root' cho cả dòng, 'val-RUB-Root' cho con số
+        //`label-${mapItem.label.replace(/,/g, '-')}`
+        const rowElement = document.getElementById(`row-${mapItem.key.replace(/,/g, '-')}`);
+        const labelElement = document.getElementById(`label-${mapItem.key.replace(/,/g, '-')}`);
+        const valElement = document.getElementById(`val-${mapItem.key.replace(/,/g, '-')}`);
+           // console.log(ratio)
+       
+            if (ratio === 0) {
+                // Ẩn nguyên hàng nếu ratio = 0
+                if (rowElement) {rowElement.style.display = 'none'; 
+               // labelElement.style.display = 'none';
+            }
+
+            } else {
+                if (rowElement ){ rowElement.style.display = ''; 
+                //labelElement.style.display = '';
+            }
+                valElement.innerText = ratio.toFixed(1) + "%";
+            }
+        
+
+        // Cộng dồn tổng
+        if (mapItem.group === "RUB") sumRubber += ratio;
+        else sumNonRubber += ratio;
+    });
+
+    //Cập nhật tổng nhóm
+    document.getElementById("total-rubber").innerText = sumRubber.toFixed(1) + "%";
+    document.getElementById("total-non-rubber").innerText = sumNonRubber.toFixed(1) + "%";
+
+    document.getElementById("grand-total-1").innerText = (sumRubber + sumNonRubber).toFixed(0) + "%";
+    document.getElementById("grand-total-2").innerText = (sumRubber + sumNonRubber).toFixed(0) + "%";
+}
+/// reder tb
+function renderTable(data) {
+    const tbody = document.getElementById('myTbody');
+    tbody.innerHTML = ""; // Xóa sạch dữ liệu cũ trước khi render lại
+
+    let sumRubber = 0;
+    let sumNonRubber = 0;
+
+    // 1. Phân loại và nhóm dữ liệu từ RK_RESULT dựa trên window.mapping
+    const rubberItems = [];
+    const nonRubberItems = [];
+
+    data.RK_RESULT.forEach(item => {
+        // Bỏ qua nếu tỉ lệ bằng 0 hoặc không có dữ liệu
+        if (!item.INPUT_RATIO || item.INPUT_RATIO === 0) return;
+
+        // Tìm mapping tương ứng (ưu tiên match chuẩn key hoặc chứa kí tự)
+        const mapItem = window.mapping.find(m => 
+            item.MTRL_CHTR_VAL === m.key || 
+            item.MTRL_CHTR_VAL.includes(m.key) ||
+            (m.otherKey && m.otherKey.split(';').map(k => k.trim()).includes(item.MTRL_CHTR_VAL))
+        );
+
+        const targetItem = {
+            key: item.MTRL_CHTR_VAL,
+            label: mapItem ? mapItem.label : item.MTRL_CHTR_VAL, // Nếu không tìm thấy mapping thì lấy luôn key làm label
+            ratio: item.INPUT_RATIO
+        };
+
+        // Chia nhóm dựa trên thuộc tính group trong mapping
+        if (mapItem && mapItem.group === "RUB") {
+            rubberItems.push(targetItem);
+            sumRubber += item.INPUT_RATIO;
+        } else {
+            nonRubberItems.push(targetItem);
+            sumNonRubber += item.INPUT_RATIO;
+        }
+    });
+
+    // 2. Hàm bổ trợ để render từng nhóm cụ thể vào bảng
+    function renderGroup(groupLabel, groupGroupId, items, totalRatio) {
+        if (items.length === 0) return; // Nếu nhóm không có dữ liệu thì không render gì cả
+    //    items.length -=1
+        items.forEach((item, index) => {
+            const row = tbody.insertRow();
+            row.id = `row-${item.key.replace(/,/g, '-')}`;
+
+            // Ô 1: Tên Nhóm (Chỉ insert ở dòng đầu tiên của nhóm và set rowspan)
+            if (index === 0) {
+                const cellGroup = row.insertCell();
+                cellGroup.className = groupGroupId === "RUB" ? "rowRub" : "rowNon";
+                cellGroup.rowSpan = items.length;
+                cellGroup.textContent = groupLabel;
+            }
+
+            // Ô 2: Tên Label của nguyên liệu
+            const cellLabel = row.insertCell();
+            cellLabel.id = `label-${item.label.replace(/,/g, '-')}`;
+            cellLabel.textContent = item.label;
+
+            // Ô 3: Giá trị Ratio của dòng đó
+            const cellVal = row.insertCell();
+            cellVal.id = `val-${item.key.replace(/,/g, '-')}`;
+            cellVal.textContent = item.ratio.toFixed(1) + "%";
+
+            // Ô 4: Tổng của cả nhóm (Chỉ insert ở dòng đầu tiên và set rowspan)
+            if (index === 0) {
+                const cellTotal = row.insertCell();
+                cellTotal.id = groupGroupId === "RUB" ? "total-rubber" : "total-non-rubber";
+                cellTotal.className = groupGroupId === "RUB" ? "rowRub" : "rowNon";
+                cellTotal.rowSpan = items.length;
+                cellTotal.textContent = totalRatio.toFixed(1) + "%";
+            }
+        });
+    }
+
+    // 3. Tiến hành render nhóm Rubber và Non-Rubber vào bảng HTML
+    renderGroup("Rubber", "RUB", rubberItems, sumRubber);
+   renderGroup("None Rubber", "NON", nonRubberItems, sumNonRubber);
+console.log(rubberItems)
+console.log(nonRubberItems)
+    // 4. Cập nhật các ô Grand Total bên ngoài bảng (nếu có)
+    const grandTotal1 = document.getElementById("grand-total-1");
+    const grandTotal2 = document.getElementById("grand-total-2");
+    
+    if (grandTotal1) grandTotal1.innerText = (sumRubber + sumNonRubber).toFixed(0) + "%";
+    if (grandTotal2) grandTotal2.innerText = (sumRubber + sumNonRubber).toFixed(0) + "%";
+}
+
+/// render tb
+function updateRowSpan() {
+    // 1. Lấy tất cả các dòng thuộc nhóm "None Rubber"
+    console.log(summary.RUB.count)
+    console.log(summary.NON.count)
+    const non = (!summary.NON)? 0:summary.NON.count
+    const rub = (!summary.RUB)? 0:summary.RUB.count
+    const rubSpan = document.getElementsByClassName("rowRub")
+    const nonSpan = document.getElementsByClassName("rowNon")
+    //console.log(non)
+    // 3. Cập nhật rowspan cho ô tiêu đề nhóm và ô tổng
+    
+    if (rub > 0) {
+        rubSpan[0].rowSpan = rub+1;
+        rubSpan[0].style.display = ''; // Hiện lại nếu trước đó bị ẩn
+        rubSpan[1].rowSpan = rub+1;
+        rubSpan[1].style.display = '';
+    } else {
+        // Nếu không có dòng nào có dữ liệu, ẩn luôn cả ô tiêu đề nhóm
+        rubSpan[0].style.display = 'none';
+        rubSpan[0].style.display = 'none';
+        rubSpan[1].style.display = 'none';
+        rubSpan[1].style.display = 'none';
+    }
+    if (non > 0) {
+        nonSpan[0].rowSpan = non+1;
+        nonSpan[0].style.display = ''; // Hiện lại nếu trước đó bị ẩn
+        nonSpan[1].rowSpan = non+1;
+        nonSpan[1].style.display = '';
+    } else {
+        // Nếu không có dòng nào có dữ liệu, ẩn luôn cả ô tiêu đề nhóm
+        nonSpan[0].style.display = 'none';
+        nonSpan[0].style.display = 'none';
+        nonSpan[1].style.display = 'none';
+        nonSpan[1].style.display = 'none';
+    }
+}
+async function update(){
+    let tb = document.getElementById("myTbody");
+    tb.innerHTML = ``;
+    //jsonData={}
+    //await getdata();
+    updateMapping();
+    summaryUpdate();
+    
+    renderTable(jsonData);  
+    //updateRowSpan();
+    
+}
+
+function renderDomTB(){
+    let newElement = document.createElement("div")
+  //  let a = document.getElementsByTagName("body")
+    let a = document.getElementById("divLeft")
+    newElement.innerHTML = `
+     <button class="btn-download" id="save"> Lưu bảng thành hình ảnh (PNG)</button>
+    <button class="btn-download" id="update">update</button>
+   
+   
+
+<table class="mtrl-table" id="mtrl-table">
+    <thead>
+        <tr>
+            <th id="thikness"colspan="4" class="table-title">2.5 mm MBR C2</th>
+        </tr>
+        <tr>
+            <th colspan="2">Material</th>
+            <th colspan="2">Percentage</th>
+           
+        </tr>
+    </thead>
+    <tbody id="myTbody">
+      
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2" style="text-align: center; font-weight: bold;">Total</td>
+            <td id="grand-total-1" style="font-weight: bold;">0%</td>
+            <td id="grand-total-2" style="font-weight: bold;">0%</td>
+        </tr>
+    </tfoot>
+</table>
+    `
+    console.log(a)
+    a.append(newElement)
+    let sv = document.getElementById("save")
+    sv.addEventListener("click",()=>{
+      downloadSnapshot()
+    })
+ }
+
+
+let cout = 0
+const intervalId =  setInterval(() => {
+    let a = {}
+  try{
+   // getdata()
+     //jsonData
+     
+   //  console.log("jsonData",jsonData)
+  }
+  catch(error){
+     console.log("Loi getdata",error)
+  }
+  cout++
+  if (cout>10){
+    clearInterval(intervalId);
+  }
+  console.log(jsonData)
+ // let b = document.getElementsByTagName("body")
+ let b = document.getElementById("divLeft")
+ console.log("b",b)
+ // Kiểm tra điều kiện để dừng
+  if (!jsonData.RK_RESULT != "" && !b ) {
+
+    console.log("a!='' true")
+    
+
+  }else{
+    console.log("a!='' else")
+    renderDomTB()
+    //renderTable(a);  
+    //updateRowSpan()
+    update()
+    //
+    
+    let updt = document.getElementById("update")
+    updt.addEventListener("click",()=>{
+    update()
+    })
+    clearInterval(intervalId);
+     // Dừng lặp
+    
+  }
+}, 3000); 
+// Gọi hàm
+
+//import * as htmlToImage from 'html-to-image';
+
+function downloadSnapshot() {
+  // 1. Chọn phần tử HTML bạn muốn chụp lại
+//  const node = document.getElementById('mtrl-table');
+
+            const container = document.getElementById("mtrl-table");
+            
+            html2canvas(container).then(canvas => {
+                // Chuyển canvas thành URL hình ảnh
+                const image = canvas.toDataURL("image/png");
+                
+                // Tạo một thẻ <a> tạm thời để tải xuống
+                const link = document.createElement('a');
+                link.href = image;
+                link.download = 'Table.png'; // Tên file khi tải về
+                link.click();
+            });}
+
+  
+    
+
+
+window.addEventListener('DOMContentLoaded',()=>{
+    let a = document.getElementById("submain_tite2")
+    console.log(a)
+})
+
+
+// chrome.runtime.sendMessage hoặc window.postMessage 
+// để trao đổi dữ liệu giữa trang chính và iframe.
+
+// chrome.scripting.executeScript({
+//   target: { 
+//     tabId: tab.id, 
+//     allFrames: true // Chạy trên tất cả các frame của tab hiện tại
+//   },
+//   files: ["content.js"]
+// });
+
+
+
+
+
+</script>
+-->
+    <!-- <script>
+        const jsonData = {
+            "RK_RESULT": [
+                { "MTRL_CHTR_VAL": "ACA,SlabChip", "INPUT_RATIO": 1.5077524111830058 },
+                { "MTRL_CHTR_VAL": "CSW,C.Log", "INPUT_RATIO": 15.162983762666341 },
+                { "MTRL_CHTR_VAL": "MHW,Chiplog", "INPUT_RATIO": 7.550970577463069 },
+                { "MTRL_CHTR_VAL": "RUB,C.Log", "INPUT_RATIO": 29.58735197167623 },
+                { "MTRL_CHTR_VAL": "RUB,Chip,VENR", "INPUT_RATIO": 3.1314857770723967 },
+                { "MTRL_CHTR_VAL": "RUB,Root", "INPUT_RATIO": 30.25882065681846 },
+                { "MTRL_CHTR_VAL": "RUB,S.Log", "INPUT_RATIO": 5.646441215968746 },
+                { "MTRL_CHTR_VAL": "RUB,Slab", "INPUT_RATIO": 7.154193627151752 }
+            ]
+        };
+
+        function updateTable(data) {
+            let sumRubber = 0;
+            let sumNonRubber = 0;
+
+            data.RK_RESULT.forEach(item => {
+                const code = item.MTRL_CHTR_VAL;
+                const ratio = item.INPUT_RATIO;
+                let targetId = "";
+
+                // Mapping logic
+                if (code.includes("RUB,C.Log")) targetId = "val-RUB-CLog";
+                else if (code.includes("RUB,S.Log")) targetId = "val-RUB-SLog";
+                else if (code.includes("RUB,Root")) targetId = "val-RUB-Root";
+                else if (code.includes("VENR")) targetId = "val-RUB-VENR";
+                else if (code.includes("RUB,Slab")) targetId = "val-RUB-Slab";
+                else if (code.includes("CSW")) targetId = "val-CSW";
+                else if (code.includes("MHW")) targetId = "val-MHW";
+                else if (code.includes("ACA")) targetId = "val-ACA";
+                else if (code.includes("MEL")) targetId = "val-MEL";
+
+                if (targetId) {
+                    document.getElementById(targetId).innerText = ratio.toFixed(1) + "%";
+                    if (ratio === 0) {
+                    // Ẩn thẻ nếu ratio bằng 0
+                        element.style.display = 'none';
+                    }
+                    // Tính tổng nhóm
+                    if (targetId.startsWith("val-RUB")) {
+                        element.style.display = '';
+                        sumRubber += ratio;
+                    } else {
+                        sumNonRubber += ratio;
+                    }
+                }
+            });
+
+            // Cập nhật các ô tổng
+            document.getElementById("total-rubber").innerText = sumRubber.toFixed(1) + "%";
+            document.getElementById("total-non-rubber").innerText = sumNonRubber.toFixed(1) + "%";
+            
+            const totalAll = sumRubber + sumNonRubber;
+            document.getElementById("grand-total-1").innerText = Math.round(totalAll) + "%";
+            document.getElementById("grand-total-2").innerText = Math.round(totalAll) + "%";
+        }
+
+        // Chạy hàm cập nhật
+        updateTable(jsonData);
+        // ham luu hinh anh
+        function downloadTable() {
+            const container = document.getElementById('data-table');
+            
+            html2canvas(container).then(canvas => {
+                // Chuyển canvas thành URL hình ảnh
+                const image = canvas.toDataURL("image/png");
+                
+                // Tạo một thẻ <a> tạm thời để tải xuống
+                const link = document.createElement('a');
+                link.href = image;
+                link.download = 'Table_MBR_C2.png'; // Tên file khi tải về
+                link.click();
+            });}
+        
+    </script> -->
+</body>
+</html>
