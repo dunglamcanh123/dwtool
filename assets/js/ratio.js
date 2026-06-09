@@ -297,7 +297,7 @@ async function updateTitle(){
     let pcs = document.getElementById("RSLT_PCS")
     inf.innerText = thiknessInfo.RK_RESULT.PROD_NM
     star.innerText = thiknessInfo.RK_RESULT.START_DATE
-    updateTime.innerText = upDay(dataInfo[99].created_at)
+    updateTime.innerText = upDay(dataInfo[dataInfo.length-1].created_at)
     pcs.innerText = thiknessInfo.RK_RESULT.RSLT_PCS
 
 }
