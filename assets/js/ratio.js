@@ -20,8 +20,8 @@ async function getdata(){
         // 4. Sử dụng dữ liệu
         console.log("Dữ liệu JSON nhận được:", data);
         dataInfo = data
-        thiknessInfo = data[99].title
-        jsonData = data[99].ratio
+        thiknessInfo = data[data.length-1].title
+        jsonData = data[data.length-1].ratio
         //renderData(data); // Hàm phụ trách hiển thị dữ liệu lên giao diện (nếu có)
 
     } catch (error) {
