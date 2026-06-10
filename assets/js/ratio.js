@@ -300,7 +300,7 @@ async function updateTitle(){
     inf.innerText = thiknessInfo.RK_RESULT.PROD_NM
     star.innerText = thiknessInfo.RK_RESULT.START_DATE
     updateTime.innerText = upDay(dataInfo[dataInfo.length-1].created_at)
-    pcs.innerText = thiknessInfo.RK_RESULT.RSLT_PCS
+    pcs.innerText = thiknessInfo.RK_RESULT.PRD_PLN_PCS - thiknessInfo.RK_RESULT.RSLT_PCS
     let persen = (thiknessInfo.RK_RESULT.PRD_PLN_PCS - thiknessInfo.RK_RESULT.RSLT_PCS)*100/thiknessInfo.RK_RESULT.PRD_PLN_PCS
     pcs_percent.innerText = persen+ "%"
     pcs_percent_v.style.width = persen+"%"
