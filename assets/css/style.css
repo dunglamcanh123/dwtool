@@ -26,6 +26,13 @@ table {
             background-color: #f9f9f9;
         }
               /* Style cho nút bấm */
+            .btn-group{
+                 display: flex;
+                flex-direction: column-reverse;
+                flex-wrap: wrap;
+            }           
+                        
+            }
         .btn-download {
             margin-bottom: 15px;
             padding: 10px 20px;
