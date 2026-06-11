@@ -36,7 +36,8 @@ table {
         .btn-download {
             margin-bottom: 15px;
             padding: 10px 20px;
-            background-color: #1de0c3;
+            background-color: #1dd9cd;
+            width: 121px;
             color: white;
             border: none;
             border-radius: 5px;
@@ -44,7 +45,7 @@ table {
             font-size: 16px;
             font-weight: bold;
         }
-        .btn-download:hover { background-color: #27ae60; }
+        .btn-download:hover { background-color: #1dc5e8; }
 
 
 /**======================================================================
