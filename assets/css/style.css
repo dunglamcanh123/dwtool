@@ -27,14 +27,14 @@ table {
         }
               /* Style cho nút bấm */
             .btn-group{
-                padding: 10px;
+                padding: 3px;
                 display: flex;
-                justify-content: flex-end;
+                flex-direction: row-reverse;
             }           
                         
             
         .btn-download {
-            margin-bottom: 15px;
+            margin: 6px;
             padding: 10px 20px;
             background-color: #1dd9cd;
             width: 121px;
