@@ -27,9 +27,9 @@ table {
         }
               /* Style cho nút bấm */
             .btn-group{
-                 display: flex;
-                flex-direction: column-reverse;
-                flex-wrap: wrap;
+                padding: 10px;
+                display: flex;
+                justify-content: flex-end;
             }           
                         
             }
