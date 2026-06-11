@@ -342,10 +342,11 @@ function renderDomTB(){
   //  let a = document.getElementsByTagName("body")
     let a = document.getElementById("ratioTable")
     newElement.innerHTML = `
-     <button class="btn-download" id="save">Lưu thành hình ảnh (PNG)</button>
+    <div class="btn-group">
+     <button class="btn-download" id="save">Lưu hình</button>
     <button class="btn-download" id="copy">Copy</button>
      <button class="btn-download" id="update">update</button>
-   
+    </div>
    
 
 <table class="mtrl-table" id="mtrl-table" style=" color: black;">
