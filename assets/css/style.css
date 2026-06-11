@@ -3428,7 +3428,7 @@ text:is([data-pc-theme="dark"] *),.apexcharts-theme-light .apexcharts-menu-icon:
   padding: .9rem .75rem;
   vertical-align: middle;
   font-size: 13px;
-  text-transform: uppercase;
+  
   --tw-text-opacity: 1;
   color: rgb(29 38 48 / var(--tw-text-opacity));
 }
@@ -3439,10 +3439,10 @@ text:is([data-pc-theme="dark"] *),.apexcharts-theme-light .apexcharts-menu-icon:
   color: rgba(255, 255, 255, 0.8);
 }
 .table thead th:where([dir="ltr"], [dir="ltr"] *){
-  text-align: left;
+  text-align: center;
 }
 .table thead th:where([dir="rtl"], [dir="rtl"] *){
-  text-align: right;
+  text-align: center;
 }
 .table:not(:last-child)>:last-child>*{
   border-top-width: 1px;
