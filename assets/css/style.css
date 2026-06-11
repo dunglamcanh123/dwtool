@@ -6,7 +6,7 @@ table {
             text-align: center;
         }
         th, td {
-            border: 1px solid black;
+            border: 1px solid #00000012;
             padding: 8px;
         }
         .header-title {
