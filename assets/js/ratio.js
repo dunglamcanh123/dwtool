@@ -343,9 +343,9 @@ function renderDomTB(){
     let a = document.getElementById("ratioTable")
     newElement.innerHTML = `
     <div class="btn-group">
-     <button class="btn-download" id="save">Lưu hình</button>
+     <button class="btn-download" id="save">Save</button>
     <button class="btn-download" id="copy">Copy</button>
-     <button class="btn-download" id="update">update</button>
+     <button class="btn-download" id="update">Refresh</button>
     </div>
    
 
