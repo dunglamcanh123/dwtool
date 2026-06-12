@@ -62,7 +62,7 @@ function renderTablePro(arr){
 async function initPro(){
    
       pro = await getdataJson()
-      renderTablePro(pro[length-1].pro.RK_PSM)
+      renderTablePro(pro[pro.length-1].pro.RK_PSM)
     
 }
 initPro()
