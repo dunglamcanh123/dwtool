@@ -383,52 +383,6 @@ function renderDomTB(){
  }
 
 
-let cout = 0
-const intervalId =  setInterval(() => {
-    let a = {}
-  try{
-   // console.log("data for jsonData")
-   // getdata()
-     //jsonData
-     
-   //  console.log("jsonData",jsonData)
-  }
-  catch(error){
-     console.log("Loi getdata",error)
-  }
-  cout++
-  if (cout>10){
-    clearInterval(intervalId);
-  }
-//  console.log(jsonData)
- // let b = document.getElementsByTagName("body")
- let b = document.getElementById("ratioTable")
-// console.log("b",b)
- // Kiểm tra điều kiện để dừng
- !jsonData.RK_RESULT != ""
-  if (!b) {
-
-   console.log("!container= true")
-    
-
-  }else{
-    console.log("!container= false")
-    renderDomTB()
-    //renderTable(a);  
-    //updateRowSpan()
-    update()
-    //
-    
-    let updt = document.getElementById("update")
-    updt.addEventListener("click",()=>{
-    update()
-    })
-    clearInterval(intervalId);
-     // Dừng lặp
-    
-  }
-}, 3000); 
-// Gọi hàm
 
 //import * as htmlToImage from 'html-to-image';
 
@@ -524,6 +478,20 @@ function copyCanvasToClipboard() {
 // Cách gọi hàm:
 // getdata(mes).then(data => console.log("Dữ liệu nhận được:", data));
 //if(message.action = "ratio"){} else {}
+function ratioInit(){
+    let b = document.getElementById("ratioTable")
+    renderDomTB()
+    //renderTable(a);  
+    //updateRowSpan()
+    update()
+    //
+    
+    let updt = document.getElementById("update")
+    updt.addEventListener("click",()=>{
+    update()})
+}
 
+// Gọi hàm
+ratioInit()
 
 
