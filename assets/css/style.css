@@ -47,12 +47,11 @@ table {
         }
         .btn-download:hover { background-color: #1dc5e8; }
 
-            .pro {
-                        .container {
+            .table-responsive {
+                        
               max-height: 300px;    /* Giới hạn độ cao tối đa (thay đổi tùy ý) */
               overflow-y: auto;     /* Tự động hiện thanh cuộn đứng nếu nội dung vượt quá 300px */
              /*  border: 1px solid #ccc; Thêm viền để dễ quan sát (không bắt buộc) */
-}
             }
 /**======================================================================
 =========================================================================
