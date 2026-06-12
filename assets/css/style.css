@@ -53,6 +53,9 @@ table {
               overflow-y: auto;     /* Tự động hiện thanh cuộn đứng nếu nội dung vượt quá 300px */
              /*  border: 1px solid #ccc; Thêm viền để dễ quan sát (không bắt buộc) */
             }
+
+            .Completion{background-color: #3f4d6729;}
+            .Run{background-color: #c7d91d2e;} 
 /**======================================================================
 =========================================================================
 Template Name: Datta Able - Tailwind Admin Template
