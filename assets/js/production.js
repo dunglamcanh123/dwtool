@@ -15,10 +15,11 @@ async function getdataJson(){
         const data = await response.json();
         
         // 4. Sử dụng dữ liệu
-        console.log("pro:", data);        
-        pro = data[data.length-1].pro
+        console.log("pro:", data);
+       
+        //pro = data[data.length-1].pro
         //renderData(data); // Hàm phụ trách hiển thị dữ liệu lên giao diện (nếu có)
-
+        return data
     } catch (error) {
         // Bắt các lỗi mạng hoặc lỗi cú pháp JSON
         console.error("Đã xảy ra lỗi khi fetch dữ liệu:", error);
@@ -60,7 +61,7 @@ function renderTablePro(arr){
 
 async function initPro(){
     try{
-      await getdataJson()
+      pro = await getdataJson()
       renderTablePro(pro[length-1].pro.RK_PSM)
     }catch(e){
         console.log("khong lay duoc du lieu Pro!")
