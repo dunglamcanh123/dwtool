@@ -60,7 +60,7 @@ function renderTablePro(arr){
 
 async function initPro(){
     try{
-       pro = await getdataJson()
+      await getdataJson()
       renderTablePro(pro)
     }catch(e){
         console.log("khong lay duoc du lieu Pro!")
