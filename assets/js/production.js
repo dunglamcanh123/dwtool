@@ -4,7 +4,7 @@ async function getdataJson(){
 
     try {
         // 1. Gửi yêu cầu fetch tới file JSON
-        const response = await fetch('https://dwtool.free.nf/api/proData2.json'); // Thay 'data.json' bằng đường dẫn file của bạn
+        const response = await fetch('https://dwtool.free.nf/api/proData3.json'); // Thay 'data.json' bằng đường dẫn file của bạn
         
         // 2. Kiểm tra nếu phản hồi không thành công (ví dụ: lỗi 404, 500)
         if (!response.ok) {
