@@ -3,7 +3,8 @@ const sif = {
   "A": [],
   "B": [],
   "C": [],
-  "D": []
+  "D": [],
+  "today": 0
 };
 
 function addSif(startDateInput, numberOfDays) {
@@ -24,7 +25,10 @@ function addSif(startDateInput, numberOfDays) {
   }
 
   // Tính số ngày chênh lệch giữa ngày bắt đầu mới và ngày neo gốc
-  const msPerDay = 24 * 60 * 60 * 1000; // Số mili-giây trong 1 ngày
+  const msPerDay = 24 * 60 * 60 * 1000;
+  const difftoday = startDate - new Date()
+sif.today = Math.floor(difftoday / msPerDay)+1;
+  // Số mili-giây trong 1 ngày
   const diffTime = startDate - baseDate;
   const diffDays = Math.floor(diffTime / msPerDay);
 
@@ -64,10 +68,10 @@ function renderSifTable() {
     headerElement.innerHTML = `
         <tr>
             <th>Ngày</th>
-            <th>Kíp A</th>
-            <th>Kíp B</th>
-            <th>Kíp C</th>
-            <th>Kíp D</th>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+            <th>D</th>
         </tr>
     `;
 
@@ -95,13 +99,14 @@ function renderSifTable() {
 }
 
 // Hàm phụ trợ để biến các ký tự M, N, A, O thành các thẻ màu (Badge) cho đẹp mắt
-function renderSifTable() {
+function renderSifTable(today) {
     const headerElement = document.getElementById("shiftTableHeader");
     const bodyElement = document.getElementById("shiftTable");
 
     const totalDays = sif.Date.length;
 
     // --- 1. TẠO TIÊU ĐỀ CỘT (Dòng đầu tiên: Tiêu đề "Kíp / Ngày" và danh sách các ngày) ---
+    
     let headerHtml = `<tr><th>Kíp / Ngày</th>`;
     
     for (let i = 0; i < totalDays; i++) {
@@ -152,10 +157,19 @@ function getShiftBadge(shift) {
 // console.log("--- Lịch từ ngày 2026-07-11 ---");
 // addSif("2026-07-11", 4);
 // 1. Đảm bảo DOM đã load xong
-document.addEventListener("DOMContentLoaded", () => {
-    
+function stringDay(date){
+  let today = new Date(date)
+    let day =today.getDate() // ngay
+    let month = today.getMonth() + 1 //thang +1
+    let year = today.getFullYear() // nam
     // 2. Chạy hàm tính toán lịch ca (Ví dụ: tính 15 ngày kể từ hôm nay)
-    addSif("2026-06-12", 15); 
+  console.log(`${year}-${month}-${day}`)  
+  return `${year}-${month}-${day}`
+}
+document.addEventListener("DOMContentLoaded", () => {
+    // 2. Chạy hàm tính toán lịch ca (Ví dụ: tính 15 ngày kể từ hôm nay)
+    let stringDay = stringDay(new Date())
+    addSif(stringDay, 30); 
     
     // 3. Gọi hàm hiển thị dữ liệu lên bảng HTML
     renderSifTable();
