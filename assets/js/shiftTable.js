@@ -168,8 +168,8 @@ function stringDay(date){
 }
 document.addEventListener("DOMContentLoaded", () => {
     // 2. Chạy hàm tính toán lịch ca (Ví dụ: tính 15 ngày kể từ hôm nay)
-    let stringDay = stringDay(new Date())
-    addSif(stringDay, 30); 
+    let day = stringDay(new Date())
+    addSif(day, 30); 
     
     // 3. Gọi hàm hiển thị dữ liệu lên bảng HTML
     renderSifTable();
