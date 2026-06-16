@@ -1,10 +1,11 @@
 const sif = {
   "Date": [],
+  "thu":[],
   "A": [],
   "B": [],
   "C": [],
   "D": [],
-  "today": 0
+  "today": 1
 };
 
 function addSif(startDateInput, numberOfDays) {
@@ -27,7 +28,7 @@ function addSif(startDateInput, numberOfDays) {
   // Tính số ngày chênh lệch giữa ngày bắt đầu mới và ngày neo gốc
   const msPerDay = 24 * 60 * 60 * 1000;
   const difftoday = startDate - new Date()
-sif.today = Math.floor(difftoday / msPerDay)+1;
+    //sif.today = Math.floor(difftoday / msPerDay)+1;
   // Số mili-giây trong 1 ngày
   const diffTime = startDate - baseDate;
   const diffDays = Math.floor(diffTime / msPerDay);
@@ -37,9 +38,11 @@ sif.today = Math.floor(difftoday / msPerDay)+1;
     // 1. Tính toán ngày hiện tại
     let currentDay = new Date(startDate);
     currentDay.setDate(startDate.getDate() + i);
-    
+    let y = currentDay.getDay();
+    let thu = ["T7","CN","T2","T3","T4","T5","T6"]
     let dateString = currentDay.toISOString().split('T')[0];
     sif.Date.push(dateString);
+    sif.thu.push(thu[y]);
 
     // 2. Tính index dựa trên độ lệch tổng thể (diffDays + i)
     // Dùng hàm chuẩn hóa số dư để xử lý cả trường hợp diffDays bị âm (ngày nhập vào trước ngày 13/7)
@@ -80,11 +83,12 @@ function renderSifTable() {
     const totalRows = sif.Date.length; // Số lượng ngày đã được tính toán
 
     for (let i = 0; i < totalRows; i++) {
+
         // Định dạng lại ngày hiển thị cho dễ nhìn (DD/MM/YYYY) thay vì YYYY-MM-DD
         const dateParts = sif.Date[i].split("-");
         const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
-
-        bodyHtml += `
+        console.log("hú")
+          bodyHtml += `
             <tr>
                 <td><strong>${formattedDate}</strong></td>
                 <td>${getShiftBadge(sif.A[i])}</td>
@@ -93,6 +97,7 @@ function renderSifTable() {
                 <td>${getShiftBadge(sif.D[i])}</td>
             </tr>
         `;
+        
     }
     
     bodyElement.innerHTML = bodyHtml;
@@ -113,7 +118,7 @@ function renderSifTable(today) {
         // Định dạng ngày thành DD/MM
         const dateParts = sif.Date[i].split("-");
         const formattedDate = `${dateParts[2]}/${dateParts[1]}`;
-        headerHtml += `<th>${formattedDate}</th>`;
+        headerHtml += `<th><span><p>${formattedDate}</p><p>${sif.thu[i]}</p></span></th>`;
     }
     headerHtml += `</tr>`;
     headerElement.innerHTML = headerHtml;
@@ -130,7 +135,9 @@ function renderSifTable(today) {
         // Duyệt qua từng ngày để lấy ca làm việc của Kíp đó đổ vào các cột ngang
         for (let i = 0; i < totalDays; i++) {
             const shiftValue = sif[kip][i]; // Lấy dữ liệu từ sif.A[i], sif.B[i],...
-            bodyHtml += `<td>${getShiftBadge(shiftValue)}</td>`;
+            if(i == sif.today){bodyHtml += `<td style="border-bottom-width: medium; border-bottom-color: darkgrey;">${getShiftBadge(shiftValue)}</td>`;}
+            else{ bodyHtml += `<td>${getShiftBadge(shiftValue)}</td>`;}
+            
         }
         
         bodyHtml += `</tr>`;
