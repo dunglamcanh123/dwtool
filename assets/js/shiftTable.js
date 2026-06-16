@@ -12,7 +12,7 @@ function addSif(startDateInput, numberOfDays) {
   const t = ["M", "M", "M", "O", "N", "N", "N", "O", "A", "A", "A", "O"];
   
   // Ngày neo gốc (Base Date) để xác định index ban đầu
-  const baseDate = new Date(2026, 5, 12); // 13/06/2026
+  const baseDate = new Date(2026, 5, 14); // 13/06/2026
   const baseIndex = { A: 0, B: 9, C: 6, D: 3 };
 
   // Chuyển đổi ngày nhập vào (Dynamic Start Date) thành Object Date
