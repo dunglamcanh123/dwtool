@@ -5,7 +5,7 @@ const sif = {
   "B": [],
   "C": [],
   "D": [],
-  "today": 1
+  "today": ""
 };
 
 function addSif(startDateInput, numberOfDays) {
@@ -32,15 +32,21 @@ function addSif(startDateInput, numberOfDays) {
   // Số mili-giây trong 1 ngày
   const diffTime = startDate - baseDate;
   const diffDays = Math.floor(diffTime / msPerDay);
-
+  const toDay = new Date()
   // Vòng lặp để tính lịch từ ngày bắt đầu mới trở đi
+  
   for (let i = 0; i < numberOfDays; i++) {
     // 1. Tính toán ngày hiện tại
+    
+
     let currentDay = new Date(startDate);
+    
+   
     currentDay.setDate(startDate.getDate() + i);
     let y = currentDay.getDay();
     let thu = ["T7","CN","T2","T3","T4","T5","T6"]
     let dateString = currentDay.toISOString().split('T')[0];
+     if(currentDay.getDate() == toDay.getDate()){sif.today = i+1;}
     sif.Date.push(dateString);
     sif.thu.push(thu[y]);
 
@@ -87,7 +93,7 @@ function renderSifTable() {
         // Định dạng lại ngày hiển thị cho dễ nhìn (DD/MM/YYYY) thay vì YYYY-MM-DD
         const dateParts = sif.Date[i].split("-");
         const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
-        console.log("hú")
+        //console.log("hú")
           bodyHtml += `
             <tr>
                 <td><strong>${formattedDate}</strong></td>
