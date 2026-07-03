@@ -71,7 +71,7 @@ function extractProductInfo(data) {
   const number = numberMatch ? numberMatch[1] : "";
 
   // 3. Định nghĩa các từ khóa cần tìm kiếm trong chuỗi
-  const keywords = ["LBR","LMR","MMR","MBR", "S", "C2","E2"];
+  const keywords = ["LBR","LMR","MMR","MBR", "MPN", "F4S", "S", "C2","E2"];
   let foundKeywords = [];
 
   // 4. Kiểm tra xem chuỗi có chứa các từ khóa đó không
