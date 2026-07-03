@@ -68,22 +68,27 @@ function extractProductInfo(data) {
  // const numberMatch = rawString.match(/\((\d+)\*/);
  const numberMatch = rawString.match(/\((\d+\.?\d*)\*/);
 
-  const number = numberMatch ? numberMatch[1] : "";
+  // const number = numberMatch ? numberMatch[1] : "";
+ //thiknessInfo.RK_RESULT.PROD_NM
+ const str = thiknessInfo.RK_RESULT.PROD_NM;
 
+// Tách chuỗi bằng dấu phẩy, sau đó xóa khoảng trắng thừa ở 2 đầu
+const result = str.split(',').map(item => item.trim());
+ 
   // 3. Định nghĩa các từ khóa cần tìm kiếm trong chuỗi
-  const keywords = ["LBR","LMR","MMR","MBR", "MPN", "F4S", "S", "C2","E2"];
-  let foundKeywords = [];
+ // const keywords = ["LBR","LMR","MMR","MBR", "MPN", "F4S", "S", "C2","E2"];
+  let foundKeywords = result;
 
   // 4. Kiểm tra xem chuỗi có chứa các từ khóa đó không
-  keywords.forEach(word => {
-    if (rawString.includes(word)) {
-      foundKeywords.push(word);
-    }
-  });
+  // keywords.forEach(word => {
+  //   if (rawString.includes(word)) {
+  //     foundKeywords.push(word);
+  //   }
+  // });
 
   // 5. Ghép số và các từ khóa lại với nhau bằng dấu cách
   // Kết quả mong muốn: "12 MBR S C2"
-  return `${number} ${foundKeywords.join(" ")}`.trim();
+  return `${foundKeywords.join(" ")}`.trim(); //${number}
 }
 
 
