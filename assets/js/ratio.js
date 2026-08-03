@@ -101,8 +101,8 @@ window.mapping = [
         { key: "RUB,Slab", label: "Slab", group: "RUB" },
         { key: "MEL", label: "Mel", group: "NON" },
         { key: "CSW", label: "Cashew", group: "NON" },
-        { key: "MHW", label: "MTH/MHW",otherKey: "MHW,Chip",
-        group: "NON" },
+        { key: "MHW", label: "MTH/MHW", group: "NON" },
+         { key: "MHW,Chip", label: "MHW,Chip",group: "NON" },
         { key: "ACA", label: "ACA", group: "NON" }
      //   { key: "PINE", label: "PINE", group: "other" }
     ];
