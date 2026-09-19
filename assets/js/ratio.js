@@ -103,7 +103,9 @@ window.mapping = [
         { key: "CSW", label: "Cashew", group: "NON" },
         { key: "MHW", label: "MTH/MHW", group: "NON" },
          { key: "MHW,Chip", label: "MHW,Chip",group: "NON" },
-        { key: "ACA", label: "ACA", group: "NON" }
+        { key: "ACA", label: "ACA", group: "NON" },
+        { key: "ACA,Chip", label: "ACA,Chip", group: "NON" }
+ 
      //   { key: "PINE", label: "PINE", group: "other" }
     ];
 async function updateMapping() {
